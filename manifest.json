@@ -1,16 +1,15 @@
 {
-  "name": "Vite PWA",
-  "short_name": "Vite PWA",
-  "description": "A Vite starter app ready-to-go as a Progressive Web App.",
+  "name": "Anno 1404 product",
+  "short_name": "Anno 1404 product",
+  "description": "Calculator for anno 1404",
   "background_color": "#5a0fc8",
   "theme_color": "#5a0fc8",
   "display": "standalone",
   "icons": [
     {
-      "src": "/images/pwa/icon-maskable.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
+      "src": "/images/pwa/icon-48x48.png",
+      "sizes": "72x72",
+      "type": "image/png"
     },
     {
       "src": "/images/pwa/icon-72x72.png",
