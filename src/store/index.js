@@ -5,7 +5,8 @@ export default createStore({
     population: [
       {
         type: "beggar",
-        count: 100,
+        place: "west",
+        count: 1000,
         intake: [
           {
             type: "fish",
@@ -19,7 +20,8 @@ export default createStore({
       },
       {
         type: "peasant",
-        count: 200,
+        place: "west",
+        count: 2000,
         intake: [
           {
             type: "fish",
@@ -33,7 +35,8 @@ export default createStore({
       },
       {
         type: "сitizen",
-        count: 300,
+        place: "west",
+        count: 3000,
         intake: [
           {
             type: "fish",
@@ -55,7 +58,8 @@ export default createStore({
       },
       {
         type: "patrician",
-        count: 400,
+        place: "west",
+        count: 4000,
         intake: [
           {
             type: "fish",
@@ -97,7 +101,8 @@ export default createStore({
       },
       {
         type: "noblemen",
-        count: 0,
+        place: "west",
+        count: 7500,
         intake: [
           {
             type: "fish",
@@ -159,6 +164,7 @@ export default createStore({
       },
       {
         type: "nomads",
+        place: "east",
         count: 1000,
         intake: [
           {
@@ -177,6 +183,7 @@ export default createStore({
       },
       {
         type: "envoys",
+        place: "east",
         count: 3500,
         intake: [
           {
@@ -320,6 +327,9 @@ export default createStore({
         }
       });
       return { totatalIntake, productRate };
+    },
+    getPopulation: (state) => (place) => {
+      return state.population.filter((resident) => resident.place == place);
     },
   },
 });

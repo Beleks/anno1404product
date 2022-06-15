@@ -11,6 +11,20 @@
         {{ tab.title }}
       </div>
     </div>
+    <div class="population">
+      <div class="residents">
+        <div
+          class="resident"
+          v-for="(resident, index) in residents"
+          :key="index"
+        >
+          <div class="resident_img">
+            <img :src="resident.imgPath" :alt="resident.type" />
+          </div>
+          <div class="count_resident">{{ resident.count }}</div>
+        </div>
+      </div>
+    </div>
     <div class="products">
       <div class="product" v-for="(build, index) in buildings" :key="index">
         <div>
@@ -31,8 +45,6 @@
 </template>
 
 <script>
-// :src="`../assets/images/${build.type}.png`"
-
 import PopupChain from "../components/PopupChain.vue";
 
 export default {
@@ -114,6 +126,20 @@ export default {
       console.log(buildings);
       return buildings;
     },
+    residents() {
+      if (this.currentTab == "east" || this.currentTab == "west") {
+        let residents = this.$store.getters.getPopulation(this.currentTab);
+
+        residents.forEach((element) => {
+          let imgPath = new URL(
+            `../assets/images/${element.type}.png`,
+            import.meta.url
+          ).href;
+          element.imgPath = imgPath;
+        });
+        return residents;
+      }
+    },
   },
   methods: {
     switchTab(tab) {
@@ -134,6 +160,24 @@ export default {
 }
 .active_tab {
   background-color: bisque;
+}
+.population {
+  padding: 1rem;
+}
+.residents {
+  display: flex;
+  justify-content: space-around;
+}
+.resident {
+  display: flex;
+  align-items: center;
+}
+.resident_img {
+  margin-right: 2px;
+}
+.resident_img img {
+  width: 20px;
+  height: 20px;
 }
 /* content */
 .products {
