@@ -165,7 +165,7 @@ export default {
   padding: 0.5rem 0;
 }
 .active_tab {
-  background-color: bisque;
+  background-color: #ffe4c4;
 }
 .population {
   padding: 1rem;

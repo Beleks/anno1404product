@@ -98,7 +98,7 @@ export default {
 
 .button {
   margin-top: 1rem;
-  background-color: bisque;
+  background-color: #ffe4c4;
   border-radius: 5px;
   padding: 0.5rem 2rem;
 }
