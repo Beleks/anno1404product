@@ -11,23 +11,30 @@
         {{ tab.title }}
       </div>
     </div>
-    <div class="population" @click="changePopulation()">
-      <div class="residents">
-        <div
-          class="resident"
-          v-for="(resident, index) in residents"
-          :key="index"
-        >
-          <div class="resident_img">
-            <img :src="resident.imgPath" :alt="resident.type" />
+    <div v-if="this.currentTab == 'east' || this.currentTab == 'west'">
+      <div class="population" @click="changePopulation()">
+        <div class="residents">
+          <div
+            class="resident"
+            v-for="(resident, index) in residents"
+            :key="index"
+          >
+            <div class="resident_img">
+              <img :src="resident.imgPath" :alt="resident.type" />
+            </div>
+            <div class="count_resident">{{ resident.count }}</div>
           </div>
-          <div class="count_resident">{{ resident.count }}</div>
         </div>
       </div>
+      <span>Необходимое кол-во зданий:</span>
     </div>
-    <span>Необходимое кол-во зданий:</span>
     <div class="products">
-      <div class="product" v-for="(build, index) in buildings" :key="index">
+      <div
+        class="product"
+        v-for="(build, index) in buildings"
+        :key="index"
+        @click="showChain()"
+      >
         <div>
           <div class="img">
             <img :src="build.imgPath" :alt="build.type" />
@@ -40,7 +47,7 @@
       </div>
     </div>
     <div v-if="popupOpen">
-      <PopupChain />
+      <PopupChain :product="popupProduct" />
     </div>
   </div>
 </template>
@@ -67,13 +74,14 @@ export default {
           tab: "resources",
           title: "Стр. ресурсы",
         },
-        {
-          tab: "menu",
-          title: "Меню",
-        },
+        // {
+        //   tab: "menu",
+        //   title: "Меню",
+        // },
       ],
       currentTab: "west",
       popupOpen: false,
+      popupProduct: "",
       products: {
         west: [
           "fish",
@@ -124,7 +132,6 @@ export default {
           ...industrialBuildings,
         });
       });
-      console.log(buildings);
       return buildings;
     },
     residents() {
@@ -152,6 +159,9 @@ export default {
         name: "Population",
       });
     },
+    showChain() {
+      this.popupOpen = true;
+    },
   },
 };
 </script>
@@ -162,12 +172,13 @@ export default {
 }
 .tab {
   flex-grow: 1;
-  padding: 0.5rem 0;
+  padding: 0.6rem 0;
 }
 .active_tab {
   background-color: #ffe4c4;
 }
 .population {
+  margin-top: 0.5rem;
   padding: 1rem;
 }
 .residents {

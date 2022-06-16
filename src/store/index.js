@@ -320,12 +320,11 @@ export default createStore({
 
         // Есть ли такой продукт в потреблении, то считаем суммарное потребление (от кол-во жителей)
         if (necessaryProduct) {
-          necessaryProductRate = (
-            necessaryProduct.rate * resident.count
-          ).toFixed(4);
+          necessaryProductRate = necessaryProduct.rate * resident.count;
           totatalIntake += +necessaryProductRate;
         }
       });
+      totatalIntake = +totatalIntake.toFixed(4);
       return { totatalIntake, productRate };
     },
     getPopulation: (state) => (place) => {

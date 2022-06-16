@@ -62,7 +62,6 @@ export default {
         this.population[index].imgPath = imgPath;
         this.population[index].count = populationFromState[index].count;
       }
-      console.log(this.population, "population");
       return this.population;
     },
   },
