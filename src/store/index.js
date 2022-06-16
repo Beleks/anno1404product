@@ -6,7 +6,7 @@ export default createStore({
       {
         type: "beggar",
         place: "west",
-        count: 1000,
+        count: 0,
         intake: [
           {
             type: "fish",
@@ -21,7 +21,7 @@ export default createStore({
       {
         type: "peasant",
         place: "west",
-        count: 2000,
+        count: 0,
         intake: [
           {
             type: "fish",
@@ -36,7 +36,7 @@ export default createStore({
       {
         type: "сitizen",
         place: "west",
-        count: 3000,
+        count: 0,
         intake: [
           {
             type: "fish",
@@ -59,7 +59,7 @@ export default createStore({
       {
         type: "patrician",
         place: "west",
-        count: 4000,
+        count: 0,
         intake: [
           {
             type: "fish",
@@ -102,7 +102,7 @@ export default createStore({
       {
         type: "noblemen",
         place: "west",
-        count: 7500,
+        count: 0,
         intake: [
           {
             type: "fish",
@@ -165,7 +165,7 @@ export default createStore({
       {
         type: "nomads",
         place: "east",
-        count: 1000,
+        count: 0,
         intake: [
           {
             type: "dates",
@@ -184,7 +184,7 @@ export default createStore({
       {
         type: "envoys",
         place: "east",
-        count: 3500,
+        count: 0,
         intake: [
           {
             type: "dates",
@@ -330,6 +330,27 @@ export default createStore({
     },
     getPopulation: (state) => (place) => {
       return state.population.filter((resident) => resident.place == place);
+    },
+  },
+  mutations: {
+    setPopulation(state, population) {
+      population.forEach((element) => {
+        state.population.find((el) => el.type == element.type).count =
+          element.count;
+      });
+      // state.population
+    },
+  },
+  actions: {
+    savePopulation({ commit, state }, population) {
+      commit("setPopulation", population);
+      localStorage.setItem("population", JSON.stringify(population));
+    },
+    getPopulation({ commit }) {
+      let population = localStorage.getItem("population");
+      if (population) {
+        commit("setPopulation", JSON.parse(population));
+      }
     },
   },
 });

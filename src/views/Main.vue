@@ -11,7 +11,7 @@
         {{ tab.title }}
       </div>
     </div>
-    <div class="population">
+    <div class="population" @click="changePopulation()">
       <div class="residents">
         <div
           class="resident"
@@ -25,6 +25,7 @@
         </div>
       </div>
     </div>
+    <span>Необходимое кол-во зданий:</span>
     <div class="products">
       <div class="product" v-for="(build, index) in buildings" :key="index">
         <div>
@@ -145,6 +146,11 @@ export default {
     switchTab(tab) {
       this.popupOpen = false;
       this.currentTab = tab;
+    },
+    changePopulation() {
+      this.$router.push({
+        name: "Population",
+      });
     },
   },
 };
