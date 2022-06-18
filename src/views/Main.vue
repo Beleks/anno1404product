@@ -33,7 +33,7 @@
         class="product"
         v-for="(build, index) in buildings"
         :key="index"
-        @click="showChain()"
+        @click="showChain(build.type)"
       >
         <div>
           <div class="img">
@@ -47,7 +47,7 @@
       </div>
     </div>
     <div v-if="popupOpen">
-      <PopupChain :product="popupProduct" />
+      <PopupChain :product="popupProduct" @closePopup="popupOpen = false" />
     </div>
   </div>
 </template>
@@ -108,6 +108,26 @@ export default {
           "toilet_water",
           "marzipan",
         ],
+        east: [
+          "dates",
+          "milk",
+          "carpets",
+          "pearls",
+          "coffee",
+          "toilet_water",
+          "marzipan",
+        ],
+        resources: [
+          "wood",
+          "instruments",
+          "stone",
+          "glass",
+          "ropes",
+          "mosaic",
+          "weapons",
+          "military_vehicles",
+          "cannons",
+        ],
       },
     };
   },
@@ -159,7 +179,8 @@ export default {
         name: "Population",
       });
     },
-    showChain() {
+    showChain(type) {
+      this.popupProduct = type;
       this.popupOpen = true;
     },
   },
