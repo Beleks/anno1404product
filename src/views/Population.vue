@@ -83,7 +83,7 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 .rezidents {
   height: 100vh;
   padding: 1rem;
@@ -96,10 +96,20 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  input {
+    background-color: white;
+    text-align: left;
+    border-radius: 3px;
+    padding: 0.4rem 0.5rem;
+    border: 1px solid rgb(200, 200, 200);
+    &:focus {
+      border: 1px solid #ffe4c4;
+    }
+  }
 }
 
 .button {
+  font-weight: bold;
   margin-top: 1rem;
   background-color: #ffe4c4;
   border-radius: 5px;

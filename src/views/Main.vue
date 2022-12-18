@@ -39,9 +39,11 @@
           <div class="img">
             <img :src="build.imgPath" :alt="build.type" />
           </div>
-          <!-- <div class="utility"></div> -->
         </div>
         <div class="count">
+          <div class="utility">
+            <div :class="[build.class, 'line']" :style="build.style"></div>
+          </div>
           {{ Math.ceil(build.totatalIntake / build.productRate) }}
         </div>
       </div>
@@ -146,10 +148,34 @@ export default {
         ).href;
         let industrialBuildings =
           this.$store.getters.totalProductIntake(product);
+        console.log(industrialBuildings, product);
+        let width =
+          (industrialBuildings.totatalIntake * 100) /
+          Math.ceil(
+            industrialBuildings.totatalIntake / industrialBuildings.productRate
+          ) /
+          industrialBuildings.productRate;
+        width = Math.floor(width);
+        let color;
+        if (width >= 90) {
+          color = "critic";
+        } else if (width >= 60) {
+          color = "warning";
+        } else if (width < 60){
+          color = "good";
+        } else {
+          color = "";
+        }
+        console.log(width, "no floor");
+        console.log(Math.floor(width));
         buildings.push({
           type: product,
           imgPath,
           ...industrialBuildings,
+          style: {
+            width: `${width}%`,
+          },
+          class: color,
         });
       });
       return buildings;
@@ -187,7 +213,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .tabs {
   display: flex;
 }
@@ -228,18 +254,32 @@ export default {
   justify-content: space-around;
 }
 .product {
-  /* display: flex; */
   margin: 0.5rem;
 }
 .img {
-  /* background-color: aquamarine; */
   width: 46px;
   height: 46px;
 }
 .utility {
-  width: 4px;
-  background-color: brown;
-  /* height: 46px; */
+  width: 100%;
+  border: 1px solid rgb(200, 200, 200);
+  overflow: hidden;
+  margin-bottom: 5px;
+  border-radius: 3px;
+  height: 5px;
+  .line {
+    width: 100%;
+    height: 100%;
+  }
+  .good {
+    background-color: #27ae60;
+  }
+  .warning {
+    background-color: #f8ae4f;
+  }
+  .critic {
+    background-color: #f74545;
+  }
 }
 .count {
   margin-top: 2px;

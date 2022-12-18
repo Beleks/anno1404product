@@ -2,7 +2,7 @@
   <div class="popup">
     <div class="header">
       <div class="chain_type">
-        <div class="inactive">Only needed</div>
+        <!-- <div class="inactive">Only needed</div> -->
         <div class="active">~100%</div>
       </div>
       <div @click="$emit('closePopup')">
