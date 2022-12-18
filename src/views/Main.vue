@@ -148,7 +148,6 @@ export default {
         ).href;
         let industrialBuildings =
           this.$store.getters.totalProductIntake(product);
-        console.log(industrialBuildings, product);
         let width =
           (industrialBuildings.totatalIntake * 100) /
           Math.ceil(
@@ -166,8 +165,6 @@ export default {
         } else {
           color = "";
         }
-        console.log(width, "no floor");
-        console.log(Math.floor(width));
         buildings.push({
           type: product,
           imgPath,
