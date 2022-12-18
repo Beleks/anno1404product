@@ -444,12 +444,13 @@ export default createStore({
         // chain: [{}],
       },
       {
+        // Инструменты
         type: "instruments",
         rate: 1,
         chain: [
           { type: "instruments", count: "", efficacy: 1 },
-          { type: "instruments", count: 1, efficacy: 1 },
-          { type: "iron_smelter", count: 2, efficacy: 1 },
+          { type: "instruments", count: 2, efficacy: 1 },
+          { type: "iron_smelter", count: 1, efficacy: 1 },
           { type: "iron", count: 1, efficacy: 1 },
           { type: "coal", count: 1, efficacy: 1 },
         ],
@@ -468,7 +469,7 @@ export default createStore({
         chain: [
           { type: "glass", count: "", efficacy: 1 },
           { type: "glass", count: 2, efficacy: 1 },
-          { type: "quarz", count: 1, efficacy: 1 },
+          { type: "quarz", count: 1, efficacy: 0.75 },
           { type: "potash", count: 1, efficacy: 1 },
         ],
       },
@@ -539,9 +540,7 @@ export default createStore({
 
       // Ищем продукт у жителей
       state.population.forEach((resident) => {
-        let necessaryProduct = resident.intake.find(
-          (element) => element.type == product
-        );
+        let necessaryProduct = resident.intake.find((element) => element.type == product);
         let necessaryProductRate = 0;
 
         // Есть ли такой продукт в потреблении, то считаем суммарное потребление (от кол-во жителей)
@@ -560,8 +559,7 @@ export default createStore({
   mutations: {
     setPopulation(state, population) {
       population.forEach((element) => {
-        state.population.find((el) => el.type == element.type).count =
-          element.count;
+        state.population.find((el) => el.type == element.type).count = element.count;
       });
       // state.population
     },

@@ -1,11 +1,13 @@
 <template>
   <div class="rezidents">
-    <div class="rezident" v-for="(rezident, index) in rezidents" :key="index">
-      <div>
-        <img :src="rezident.imgPath" alt="" />
-      </div>
-      <div>
-        <input type="number" min="0" max="100000" v-model="rezident.count" />
+    <div>
+      <div class="rezident" v-for="(rezident, index) in rezidents" :key="index">
+        <div>
+          <img :src="rezident.imgPath" alt="" />
+        </div>
+        <div>
+          <input type="number" min="0" max="100000" v-model="rezident.count" />
+        </div>
       </div>
     </div>
 
@@ -81,8 +83,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="css" scoped>
 .rezidents {
+  height: 100vh;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -93,12 +96,18 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
 }
 
 .button {
   margin-top: 1rem;
   background-color: #ffe4c4;
   border-radius: 5px;
-  padding: 0.5rem 2rem;
+  padding: 0.8rem 2rem;
+}
+input {
+  all: unset;
 }
 </style>
+
+

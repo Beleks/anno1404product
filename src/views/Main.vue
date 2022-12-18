@@ -199,8 +199,11 @@ export default {
   background-color: #ffe4c4;
 }
 .population {
-  margin-top: 0.5rem;
-  padding: 1rem;
+  margin: 0.5rem;
+  padding: 0.3rem;
+  background-color: white;
+  border-radius: 3px;
+  border: 1px solid rgb(200, 200, 200);
 }
 .residents {
   display: flex;

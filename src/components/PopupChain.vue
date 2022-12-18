@@ -5,7 +5,11 @@
         <div class="inactive">Only needed</div>
         <div class="active">~100%</div>
       </div>
-      <div @click="$emit('closePopup')">Close</div>
+      <div @click="$emit('closePopup')">
+        <span class="material-symbols-outlined">
+          close
+        </span>
+      </div>
     </div>
     <!-- <div>cost</div> -->
     <div class="chain">

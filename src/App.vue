@@ -25,4 +25,11 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 40
+}
 </style>
